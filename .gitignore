@@ -1,0 +1,52 @@
+# ---- secrets: never commit (only .env.example is allowed) ----
+.env
+.env.*
+*.env
+!.env.example
+**/.env.bak*
+*.bak
+*.pem
+*.key
+*.pfx
+*.p12
+**/secrets/
+**/credentials*.json
+**/*service-account*.json
+*.tfvars
+
+# ---- local environments, caches, builds ----
+.venv/
+venv/
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.vscode/
+*.log
+
+# ---- databases and local data ----
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.tfstate*
+.terraform/
+logs/
+evidence/
+evidence-store/
+
+# ---- run outputs that can contain real account IDs (client / system details) ----
+backend/validation-*.md
+backend/demo_check_report.md
+fix-and-check.log
+
+# ---- archives, backups and working copies ----
+*.zip
+release/
+Claude outputs/
+cloudnexus-fix.ps1
+fix-and-check.ps1

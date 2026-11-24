@@ -1,0 +1,154 @@
+/*
+ * LV NEXUS design tokens (LatentView Analytics).
+ *
+ * Palette from the LV NEXUS design brief (light + dark). Replace the --brand-* values with the approved values from the
+ * LatentView brand guidelines when supplied; every surface, button and accent reads from these variables.
+ * Chart series are a separately validated, colour-blind-safe set. Status colours follow the semantic scale of the brief:
+ * critical red, high orange, medium amber, low blue, healthy green, unknown grey.
+ */
+:root {
+  /* brand */
+  --brand-navy: #0b1f3a;
+  --brand-navy-2: #12305a;
+  --brand-blue: #2563eb;
+  --brand-blue-strong: #1d4ed8;
+  --brand-teal: #0f766e;
+  --brand-cyan: #06b6d4;
+  /* fills behind white text / icons: >= 4.5:1 for white in both themes */
+  --brand-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 45%, #0e7490 100%);
+
+  /* type, radius, elevation, motion */
+  /* Inter (self-hosted, OFL licence) everywhere: one family, weights 400/500/600/700 */
+  --font-ui: "Inter Variable", "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-ui);
+  --fs-page: 26px;      /* page title */
+  --fs-section: 20px;   /* section title */
+  --fs-card: 15px;      /* card title */
+  --fs-kpi: 30px;       /* KPI number (28-34) */
+  --fs-body: 14px;
+  --fs-small: 12.5px;   /* secondary text, table headings */
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --dur-3: 320ms;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+
+  /* light theme */
+  color-scheme: light;
+  --page: #f5f7fb;
+  --page-gradient: linear-gradient(180deg, #eef3fb 0%, #f5f7fb 260px, #f5f7fb 100%);
+  --surface-1: #ffffff;
+  --surface-2: #f8fafc;
+  --surface-3: #eef2f7;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --text-primary: #172033;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: var(--brand-blue);
+  --accent-strong: var(--brand-blue-strong);
+  --accent-soft: rgb(37 99 235 / .10);
+  --accent-btn: var(--brand-blue);          /* filled buttons and badges with white text: >= 4.5:1 */
+  --accent-btn-hover: var(--brand-blue-strong);
+  --secondary: var(--brand-teal);
+  --focus: #2563eb;
+  --shadow-1: 0 1px 2px rgb(15 23 42 / .04), 0 4px 14px rgb(15 23 42 / .04);
+  --shadow-2: 0 16px 40px rgb(15 23 42 / .12), 0 3px 10px rgb(15 23 42 / .05);
+  /* sidebar */
+  --side-bg: #ffffff;
+  --side-line: #e2e8f0;
+  --side-text: #334155;
+  --side-text-strong: #172033;
+  --side-label: #64748b;
+  --side-hover: #f1f5f9;
+  --side-active-bg: rgb(37 99 235 / .09);
+  --side-active-text: #1d4ed8;
+  --side-active-bar: #2563eb;
+  --sidebar: var(--brand-navy);
+  --sidebar-2: var(--brand-navy-2);
+  --sidebar-text: #c6d2e4;
+  /* dark "chrome" used by dark buttons and the login scene */
+  --nav: #0b1f3a;
+  --nav-2: #12305a;
+  --nav-text: #c9d0e6;
+  --nav-pill: rgb(255 255 255 / .09);
+  --nav-pill-line: rgb(255 255 255 / .14);
+  /* "current vs previous" comparison (one hue, two steps) */
+  --compare-current: #2f4fae;
+  --compare-previous: #9fb4ea;
+  --good-soft: #dcfce7;
+  --good-ink: #15803d;
+  --bad-soft: #fee2e2;
+  --bad-ink: #b91c1c;
+
+  /* data visualisation (validated categorical set) */
+  --series-azure: #2f55c9;
+  --series-aws: #0f97a8;
+  --series-gcp: #8a63d8;
+  --series-4: #6250d6;
+  --neutral-mark: #b7c0cd;
+  /* semantic status scale */
+  --critical: #dc2626;
+  --serious: #ea580c;     /* high */
+  --warning: #d97706;     /* medium */
+  --low: #2563eb;
+  --good: #16a34a;        /* healthy */
+  --unknown: #94a3b8;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0b1220;
+  --page-gradient: linear-gradient(180deg, #0e1729 0%, #0b1220 280px, #0b1220 100%);
+  --surface-1: #142033;
+  --surface-2: #18263b;
+  --surface-3: #1f2f47;
+  --line: #29374b;
+  --line-strong: #3a4b63;
+  --text-primary: #f1f5f9;
+  --text-secondary: #c3cfdd;
+  --text-muted: #a3b2c7;
+  --accent: #60a5fa;
+  --accent-strong: #93c5fd;
+  --accent-soft: rgb(96 165 250 / .16);
+  --accent-btn: #2563eb;
+  --accent-btn-hover: #1d4ed8;
+  --secondary: #2dd4bf;
+  --brand-teal: #2dd4bf;
+  --focus: #93c5fd;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / .35);
+  --shadow-2: 0 12px 32px rgb(0 0 0 / .45);
+  --side-bg: #101a2b;
+  --side-line: #29374b;
+  --side-text: #c3cfdd;
+  --side-text-strong: #f1f5f9;
+  --side-label: #a3b2c7;
+  --side-hover: rgb(255 255 255 / .05);
+  --side-active-bg: rgb(96 165 250 / .14);
+  --side-active-text: #f1f5f9;
+  --side-active-bar: #60a5fa;
+  --sidebar: #060d19;
+  --sidebar-2: #0d1a2e;
+  --series-azure: #4f7cf0;
+  --series-aws: #119fb2;
+  --series-gcp: #9277e8;
+  --compare-current: #5b84f0;
+  --compare-previous: #34508f;
+  --good-soft: rgb(22 163 74 / .18);
+  --good-ink: #86efac;
+  --bad-soft: rgb(220 38 38 / .2);
+  --bad-ink: #fca5a5;
+  --nav: #060b1a;
+  --nav-2: #0d1630;
+  --series-4: #9085e9;
+  --neutral-mark: #4a586d;
+  --critical: #ef4444;
+  --serious: #f97316;
+  --warning: #f59e0b;
+  --low: #60a5fa;
+  --good: #22c55e;
+  --unknown: #64748b;
+}

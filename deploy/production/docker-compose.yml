@@ -1,0 +1,130 @@
+# LV NEXUS production stack for a single Linux server (Ubuntu 22.04 / 24.04 LTS or RHEL 9) with Docker Engine + Compose v2.
+#
+#   proxy      nginx (unprivileged) - the ONLY published ports: 80 (redirect) and 443 (TLS)
+#   api        web application + API (read-only root filesystem, non-root, no Linux capabilities)
+#   scheduler  the job scheduler - exactly ONE instance
+#   migrate    one-shot database migration (run by scripts/deploy.sh before the api starts)
+#   db         MySQL 8.4 LTS on an internal network with no route to the internet
+#              (profile "bundled-db"; omit the profile and set DATABASE_URL to use an external / managed MySQL)
+#
+# Networks: edge (proxy <-> api), backend (internal: api/scheduler <-> db), egress (api/scheduler -> cloud provider APIs).
+# Secrets live in ./secrets (chmod 600, never in Git). Usage: see docs/deployment/production-go-live.md.
+name: lvnexus
+
+x-hardening: &hardening
+  restart: unless-stopped
+  security_opt: ["no-new-privileges:true"]
+  cap_drop: ["ALL"]
+  logging:
+    driver: json-file
+    options: { max-size: "20m", max-file: "10" }
+
+x-app: &app
+  <<: *hardening
+  image: ${LVNEXUS_IMAGE:-lvnexus:latest}
+  env_file: [./secrets/lvnexus.env]
+  environment:
+    APP_ENV: production
+    FORWARDED_ALLOW_IPS: 172.30.10.10          # only the proxy may set X-Forwarded-For
+  read_only: true
+  tmpfs: ["/tmp:size=256m,mode=1777"]
+  volumes:
+    - ./secrets/cloud:/run/secrets/cloud:ro     # certificate / federation files referenced from lvnexus.env (optional)
+  networks: [backend, egress]
+
+services:
+  proxy:
+    <<: *hardening
+    image: ${NGINX_IMAGE:-nginxinc/nginx-unprivileged:1.27-alpine}
+    read_only: true
+    tmpfs: ["/tmp:size=64m", "/var/cache/nginx:size=64m"]
+    ports: ["80:8080", "443:8443"]
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/lvnexus.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    networks:
+      edge: { ipv4_address: 172.30.10.10 }
+    depends_on:
+      api: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null --no-check-certificate https://127.0.0.1:8443/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    mem_limit: 256m
+    cpus: 0.5
+
+  api:
+    <<: *app
+    command: ["api"]
+    environment:
+      APP_ENV: production
+      FORWARDED_ALLOW_IPS: 172.30.10.10
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-2}
+    networks:
+      edge: { ipv4_address: 172.30.10.20 }
+      backend: {}
+      egress: {}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys,urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/health/ready', timeout=4).status==200 else 1)"]
+      interval: 30s
+      timeout: 6s
+      start_period: 60s
+      retries: 3
+    mem_limit: 2g
+    cpus: 2.0
+
+  scheduler:
+    <<: *app
+    command: ["scheduler"]
+    # no healthcheck: the process exits on a fatal error and Docker restarts it; job health is visible in
+    # System health (every run is recorded) and checked by scripts/healthcheck.sh
+    depends_on:
+      api: { condition: service_healthy }
+    mem_limit: 2g
+    cpus: 2.0
+
+  migrate:
+    <<: *app
+    restart: "no"
+    command: ["migrate"]
+    profiles: ["tools"]
+
+  db:
+    <<: *hardening
+    image: ${MYSQL_IMAGE:-mysql:8.4}
+    profiles: ["bundled-db"]
+    cap_add: ["CHOWN", "SETUID", "SETGID", "DAC_OVERRIDE"]   # mysqld entrypoint needs these to drop to the mysql user
+    environment:
+      MYSQL_DATABASE: lvnexus
+      MYSQL_USER: lvnexus
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+    secrets: [mysql_password, mysql_root_password]
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d:ro
+    networks: [backend]
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root --password=\"$$(cat /run/secrets/mysql_root_password)\" --silent"]
+      interval: 10s
+      timeout: 5s
+      start_period: 60s
+      retries: 10
+    mem_limit: 4g
+    cpus: 2.0
+
+secrets:
+  mysql_password: { file: ./secrets/mysql_password }
+  mysql_root_password: { file: ./secrets/mysql_root_password }
+
+volumes:
+  mysql-data: {}
+
+networks:
+  edge:
+    ipam: { config: [{ subnet: 172.30.10.0/24 }] }
+  backend:
+    internal: true          # no route to the internet; only api, scheduler and db
+  egress: {}                # outbound HTTPS to AWS / Azure / Google APIs, SMTP, Google Chat

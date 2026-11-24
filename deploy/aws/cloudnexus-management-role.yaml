@@ -1,0 +1,130 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  LV NEXUS (CloudNexus) read-only management-account role for an on-prem server using IAM Roles Anywhere.
+  Deploy ONCE in the AWS Organizations management account, in the region you will use for Roles Anywhere.
+  Creates: trust anchor (your CA certificate), the read-only role, and the Roles Anywhere profile. No access keys.
+
+Parameters:
+  CACertificatePem:
+    Type: String
+    Description: PEM of the certificate authority that signs the server certificate (-----BEGIN CERTIFICATE----- ...).
+  CertificateCommonName:
+    Type: String
+    Default: cloudnexus-prod
+    Description: CN of the server certificate. Only a certificate with this CN can use the role.
+  MemberRoleName:
+    Type: String
+    Default: CloudNexusReadOnly
+    Description: Name of the read-only role deployed in every member account (cloudnexus-member-role.yaml).
+
+  AllowedSourceIps:
+    Type: CommaDelimitedList
+    Default: ""
+    Description: >-
+      Optional. Public egress IP ranges of the LV NEXUS server (CIDR, comma separated). When set, this role can only be
+      used from those addresses. Leave empty to not restrict by IP (for example while testing from a PC).
+
+Conditions:
+  RestrictSourceIp: !Not [ !Equals [ !Join [ "", !Ref AllowedSourceIps ], "" ] ]
+
+Resources:
+  TrustAnchor:
+    Type: AWS::RolesAnywhere::TrustAnchor
+    Properties:
+      Name: cloudnexus-trust-anchor
+      Enabled: true
+      Source:
+        SourceType: CERTIFICATE_BUNDLE
+        SourceData:
+          X509CertificateData: !Ref CACertificatePem
+
+  ManagementRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: CloudNexusManagementReader
+      Description: LV NEXUS read-only access (Roles Anywhere). Never writes, changes or deletes anything.
+      MaxSessionDuration: 3600
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: rolesanywhere.amazonaws.com }
+            Action: [ "sts:AssumeRole", "sts:TagSession", "sts:SetSourceIdentity" ]
+            Condition:
+              StringEquals:
+                "aws:PrincipalTag/x509Subject/CN": !Ref CertificateCommonName
+              ArnEquals:
+                "aws:SourceArn": !GetAtt TrustAnchor.TrustAnchorArn
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/job-function/ViewOnlyAccess
+        - arn:aws:iam::aws:policy/SecurityAudit
+      Policies:
+        - PolicyName: cloudnexus-billing-org-read
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: [ "ce:Get*", "ce:Describe*", "ce:List*", "budgets:ViewBudget", "organizations:Describe*", "organizations:List*" ]
+                Resource: "*"
+              - Effect: Allow
+                Action: "sts:AssumeRole"
+                Resource: !Sub "arn:aws:iam::*:role/${MemberRoleName}"
+        - PolicyName: cloudnexus-guardrails
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              # defence in depth: the read-only managed policies already exclude these, the explicit deny keeps it so
+              # even if a broader policy is attached later. LV NEXUS reads metadata, never data content or secrets.
+              - Sid: NoDataContentOrSecretReads
+                Effect: Deny
+                Action:
+                  - "s3:GetObject*"
+                  - "secretsmanager:GetSecretValue"
+                  - "ssm:GetParameter*"
+                  - "kms:Decrypt"
+                  - "dynamodb:GetItem"
+                  - "dynamodb:BatchGetItem"
+                  - "dynamodb:Query"
+                  - "dynamodb:Scan"
+                  - "rds-data:*"
+                  - "athena:GetQueryResults"
+                  - "lambda:GetFunction"
+                  - "ec2:GetPasswordData"
+                  - "ec2:GetConsoleOutput"
+                  - "ec2:GetConsoleScreenshot"
+                  - "logs:GetLogEvents"
+                  - "logs:FilterLogEvents"
+                  - "sqs:ReceiveMessage"
+                  - "kinesis:GetRecords"
+                Resource: "*"
+              - !If
+                - RestrictSourceIp
+                - Sid: OnlyFromTheLvNexusServer
+                  Effect: Deny
+                  Action: "*"
+                  Resource: "*"
+                  Condition:
+                    NotIpAddress:
+                      "aws:SourceIp": !Ref AllowedSourceIps
+                    Bool:
+                      "aws:ViaAWSService": "false"
+                - !Ref AWS::NoValue
+
+  Profile:
+    Type: AWS::RolesAnywhere::Profile
+    Properties:
+      Name: cloudnexus-profile
+      Enabled: true
+      DurationSeconds: 3600
+      RoleArns: [ !GetAtt ManagementRole.Arn ]
+
+Outputs:
+  TrustAnchorArn:
+    Value: !GetAtt TrustAnchor.TrustAnchorArn
+    Description: --trust-anchor-arn in the server's AWS config
+  ProfileArn:
+    Value: !GetAtt Profile.ProfileArn
+    Description: --profile-arn in the server's AWS config
+  RoleArn:
+    Value: !GetAtt ManagementRole.Arn
+    Description: --role-arn in the server's AWS config, and the principal trusted by every member role

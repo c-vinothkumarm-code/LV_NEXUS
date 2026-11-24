@@ -1,0 +1,17 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "BillingAndOrganizationRead",
+      "Effect": "Allow",
+      "Action": ["ce:Get*", "ce:Describe*", "ce:List*", "budgets:ViewBudget", "organizations:Describe*", "organizations:List*"],
+      "Resource": "*"
+    },
+    {
+      "Sid": "UseTheReadOnlyRoleInMemberAccounts",
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::*:role/CloudNexusReadOnly"
+    }
+  ]
+}
