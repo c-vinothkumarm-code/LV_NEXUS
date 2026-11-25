@@ -1,0 +1,5 @@
+YAML OK code/backend/app/services/onboarding/templates/aws/cloudnexus-management-role.yaml
+YAML OK code/backend/app/services/onboarding/templates/aws/cloudnexus-member-role.yaml
+YAML OK code/deploy/aws/cloudnexus-management-role.yaml
+YAML OK code/deploy/aws/cloudnexus-member-role.yaml
+bash -n OK: 1 shell scripts

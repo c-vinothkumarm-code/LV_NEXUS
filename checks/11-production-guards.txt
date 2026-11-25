@@ -1,0 +1,5 @@
+valid production settings accepted: production google
+demo_mode field present: False
+refused: AUTH_MODE=dev ->   Value error, AUTH_MODE=dev is not allowed when APP_ENV=production [type=value_error, input_value={'app_env': 'producti
+refused: short session secret ->   Value error, SESSION_SECRET (SECRET_KEY) must be a strong value (>=32 chars) in production [type=value_error, input_va
+refused: http:// FRONTEND_URL ->   Value error, FRONTEND_URL and GOOGLE_REDIRECT_URI must use HTTPS in production [type=value_error, input_value={'app_en

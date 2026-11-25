@@ -1,0 +1,12 @@
+GET /health
+{"status":"ok","service":"LV NEXUS · LatentView Analytics","environment":"production"}
+GET /api/v1/auth/me -> 401
+GET /api/v1/auth/providers:
+{'mode': 'google', 'environment': 'production'} False
+PUT without CSRF header -> 401
+headers:
+x-content-type-options: nosniff
+x-frame-options: DENY
+referrer-policy: same-origin
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+strict-transport-security: max-age=31536000; includeSubDomains

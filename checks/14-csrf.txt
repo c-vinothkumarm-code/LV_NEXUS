@@ -1,0 +1,3 @@
+CSRF: PUT without header (signed in) -> 403
+same PUT with X-Requested-With header -> 422
+signed in: True demo_mode key: False

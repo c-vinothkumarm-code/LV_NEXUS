@@ -1,0 +1,19 @@
+{
+ "light": {
+  "ok": 39,
+  "total": 39,
+  "bad": []
+ },
+ "dark": {
+  "ok": 39,
+  "total": 39,
+  "bad": []
+ },
+ "mobileOverflowPx": {
+  "/": 0,
+  "/accounts": 0,
+  "/cost/overview": 0,
+  "/vulnerabilities": 0,
+  "/access": 0
+ }
+}

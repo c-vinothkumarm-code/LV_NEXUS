@@ -1,0 +1,156 @@
+
+> frontend@0.0.0 lint
+> oxlint
+
+src/pages/cost/Analysis.tsx:32:71: warning react(purity): Cannot call impure function during render help: `Date` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/pages/cost/Analysis.tsx:32:100: warning react(purity): Cannot call impure function during render help: `Date` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/pages/cost/Analysis.tsx:32:127: warning react(purity): Cannot call impure function during render help: `Date` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/pages/assets/CloudServices.tsx:37:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/assets/CloudServices.tsx:48:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/cost/Cost.tsx:8:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/Reports.tsx:13:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/Reports.tsx:131:22: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Reports.tsx:132:16: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Reports.tsx:132:81: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/compliance/Compliance.tsx:10:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/accounts/Ownership.tsx:36:31: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/activity/LiveActivity.tsx:35:56: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/activity/LiveActivity.tsx:36:23: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/accounts/CloudAccounts.tsx:63:21: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/auth/AuthContext.tsx:10:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/auth/AuthContext.tsx:11:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/auth/AuthContext.tsx:12:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/auth/AuthContext.tsx:53:29: warning react(purity): Cannot call impure function during render help: `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/auth/AuthContext.tsx:43:26: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/Infrastructure.tsx:107:149: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:107:198: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:110:161: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:110:209: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:116:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:116:148: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:117:39: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:117:76: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:127:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:128:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:128:73: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:128:117: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:128:164: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:129:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:130:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:131:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Infrastructure.tsx:132:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/hooks/useScopeNames.tsx:17:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/reports/Library.tsx:11:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/hooks/useMotion.ts:12:52: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/hooks/useApi.ts:28:5: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/hooks/useFilters.tsx:24:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/layouts/AppLayout.tsx:21:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/layouts/AppLayout.tsx:81:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/layouts/AppLayout.tsx:370:27: warning react(purity): Cannot call impure function during render help: `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/layouts/AppLayout.tsx:391:32: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/layouts/AppLayout.tsx:469:19: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/vuln/Findings.tsx:20:17: warning react(immutability): This value cannot be modified help: Modifying a value previously passed as an argument to a hook is not allowed. Consider moving the modification before calling the hook
+src/components/hero.tsx:339:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/hero.tsx:353:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:8:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:9:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:10:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:11:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:12:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:15:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:16:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:18:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:19:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:20:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:24:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:32:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/ui.tsx:78:23: warning react(purity): Cannot call impure function during render help: `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/pages/vuln/FindingPanel.tsx:65:44: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/vuln/FindingPanel.tsx:67:58: warning react(jsx-key): Missing "key" prop for element in array.
+src/components/metrics.tsx:23:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/Toast.tsx:7:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/CloudConnections.tsx:22:5: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/login/Login.tsx:130:91: warning react(purity): Cannot call impure function during render help: `Date` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/components/assistant.tsx:81:71: warning react(immutability): Cannot reassign variable after render completes help: Reassigning `last` after render has completed can cause inconsistent behavior on subsequent renders. Consider using state instead
+src/components/assistant.tsx:23:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/TopologyScene.tsx:26:9: warning react(refs): Cannot access refs during render help: React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected
+src/components/secops.tsx:20:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/secops.tsx:31:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/secops.tsx:34:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/secops.tsx:47:23: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/secops.tsx:232:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/secops.tsx:233:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/secops.tsx:235:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/secops.tsx:193:19: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/inventory/Explorer.tsx:79:80: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/budget/Budgets.tsx:50:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/budget/Budgets.tsx:173:112: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/budget/Budgets.tsx:174:39: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/budget/Budgets.tsx:175:28: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:79:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:80:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:82:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:84:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:93:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:93:88: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:94:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:94:105: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Automation.tsx:95:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:104:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:105:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:106:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:107:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:108:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:124:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:125:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:126:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:127:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:128:21: warning react(jsx-key): Missing "key" prop for element in iterator. help: Add a "key" prop to the element in the iterator (https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key).
+src/pages/Onboarding.tsx:128:21: warning react(jsx-key): Missing "key" prop for element in iterator. help: Add a "key" prop to the element in the iterator (https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key).
+src/pages/Onboarding.tsx:131:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:137:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:137:88: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:138:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:139:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Onboarding.tsx:141:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/connections/Connections.tsx:65:99: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/connections/OnboardCloud.tsx:75:5: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/Governance.tsx:12:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/Governance.tsx:57:15: warning react(purity): Cannot call impure function during render help: `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/pages/Governance.tsx:128:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:128:53: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:128:117: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:129:23: warning react(jsx-key): Missing "key" prop for element in iterator. help: Add a "key" prop to the element in the iterator (https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key).
+src/pages/Governance.tsx:129:23: warning react(jsx-key): Missing "key" prop for element in iterator. help: Add a "key" prop to the element in the iterator (https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key).
+src/pages/Governance.tsx:130:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:138:58: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:138:97: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:139:16: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:139:51: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:139:109: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:147:62: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:147:118: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:148:20: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Governance.tsx:148:125: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:65:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:88:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:91:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:92:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:94:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:95:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:113:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:114:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:115:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:115:82: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:115:135: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:121:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:121:88: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:121:132: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:122:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/Access.tsx:122:66: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/access/AccessView.tsx:331:96: warning react(purity): Cannot call impure function during render help: `Date` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/pages/access/AccessView.tsx:81:21: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/audit/EventPanel.tsx:49:41: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/audit/EventPanel.tsx:54:35: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/audit/EventPanel.tsx:56:25: warning react(jsx-key): Missing "key" prop for element in array.
+src/pages/audit/Activities.tsx:68:17: warning react(immutability): This value cannot be modified help: Modifying a value previously passed as an argument to a hook is not allowed. Consider moving the modification before calling the hook
